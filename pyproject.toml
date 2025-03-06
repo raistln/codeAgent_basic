@@ -8,11 +8,17 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "huggingface-hub (>=0.29.2,<0.30.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "smolagents (>=1.10.0,<2.0.0)"
 ]
 
 [tool.poetry]
 packages = [{include = "codeagent_basic", from = "src"}]
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
