@@ -1,14 +1,24 @@
 from dotenv import load_dotenv
 import os
+from agent_basic import MyCodeAgent, LocalModel
 
-# Cargar variables de entorno
-load_dotenv()
+def main():
+    # Cargar el modelo local
+    model = LocalModel()
 
-# Leer token
-HF_TOKEN = os.getenv("HF_TOKEN")
+    # Crear el agente con el modelo local
+    agent = MyCodeAgent(model=model)
 
-if HF_TOKEN is None:
-    raise ValueError("No se encontró el token de Hugging Face en el archivo .env")
+    print("🤖 Agente activado. Puedes darle instrucciones.")
+    print("Escribe 'salir' para terminar.\n")
+    
+    while True:
+        prompt = input("🗣️ Dime algo: ")
+        if prompt.lower() == "salir":
+            break
+        
+        respuesta = agent.run(prompt)
+        print(f"🤖 Respuesta: {respuesta}\n")
 
-print("Token cargado correctamente (no se muestra por seguridad)")
-
+if __name__ == "__main__":
+    main()
